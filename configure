@@ -14,10 +14,10 @@ else
 fi
 
 if type -p javac > /dev/null; then
-    echo JAVAC=javac > Makefile
+    echo JAVAC=javac >> Makefile
     JAVAC=javac
 elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/javac" ]]; then
-    echo JAVAC="$JAVA_HOME/bin/javac" > Makefile
+    echo JAVAC="$JAVA_HOME/bin/javac" >> Makefile
     JAVAC="$JAVA_HOME/bin/javac"
 else
     echo "Java install is not a JDK!"
@@ -28,8 +28,8 @@ if [[ "$_java" ]]; then
     echo Java version "$version"
 fi
 
-echo mkdir out > Makefile
+echo mkdir out >> Makefile
 
 for filename in *.java; do
-    echo "$filename: $(javac) $filename -o out/$filename Makefile"
+    echo "$filename: \$(JAVAC) $filename -o out/$filename Makefile" >> Makefile
 done
