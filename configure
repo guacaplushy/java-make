@@ -30,4 +30,4 @@ fi
 
 echo mkdir out >> Makefile
 
-find . -iname '*.java' -exec echo "$filename: \$(JAVAC) $filename -o out/$filename Makefile" >> Makefile;
+find . -iname '*.java' -exec echo "$filename: \$(JAVAC) $filename -o out/$filename Makefile" >> Makefile\;
