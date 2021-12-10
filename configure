@@ -3,6 +3,7 @@
 if test -a Makefile; then
     rm -r Makefile
 fi
+
 if test -d out; then
     rm -r out
 fi
