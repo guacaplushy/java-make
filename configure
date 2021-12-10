@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ "$1" == "--help" ]] >> /dev/null; then
-    exit
-fi
-
 if test -a Makefile; then
     rm -r Makefile
 fi
