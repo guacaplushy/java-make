@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-if [[ -x Makefile ]]; then
+if test -f Makefile; then
     rm -r Makefile
 fi
-if [[ -x out ]]; then
+if test -d out; then
     rm -r out
 fi
 
