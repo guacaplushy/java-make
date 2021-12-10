@@ -2,6 +2,9 @@
 if [[ -x Makefile ]]; then
     rm -r Makefile
 fi
+if [[ -x out ]]; then
+    rm -r out
+fi
 
 if type -p java > /dev/null; then
     echo JAVA=java > Makefile
