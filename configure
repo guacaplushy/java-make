@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-rm -r Makefile
+if [[ -x Makefile ]]; then
+    rm -r Makefile
+fi
+
 if type -p java > /dev/null; then
     echo JAVA=java > Makefile
     JAVA=java
-elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]; then
     echo JAVA="$JAVA_HOME/bin/java" > Makefile
     JAVA="$JAVA_HOME/bin/java"
 else
@@ -13,7 +16,7 @@ fi
 if type -p javac > /dev/null; then
     echo JAVAC=javac > Makefile
     JAVAC=javac
-elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/javac" ]];  then
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/javac" ]]; then
     echo JAVAC="$JAVA_HOME/bin/javac" > Makefile
     JAVAC="$JAVA_HOME/bin/javac"
 else
@@ -27,3 +30,4 @@ fi
 
 for filename in ./src/main/java/*.java; do
     echo filename
+done
