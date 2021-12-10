@@ -11,6 +11,7 @@ elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]; then
     JAVA="$JAVA_HOME/bin/java"
 else
     echo "No java installation found!"
+    exit
 fi
 
 if type -p javac > /dev/null; then
@@ -21,6 +22,7 @@ elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/javac" ]]; then
     JAVAC="$JAVA_HOME/bin/javac"
 else
     echo "Java install is not a JDK!"
+    exit
 fi
 
 if [[ "$JAVA" ]]; then
@@ -31,3 +33,4 @@ fi
 echo mkdir out >> Makefile
 
 find . -iname '*.java' -exec echo -e "{}: \$(JAVAC) {} -o out/{} Makefile\n.PHONY: {}" >> Makefile \;
+echo Done!
