@@ -41,7 +41,7 @@ mkdir out
 
 touch .files
 
-find . -iname '*.java' -exec sh -c "echo \".PHONY: {}\n{}: \n\t\\\$(JAVAC) {} -o out/{} Makefile\" >> Makefile; echo \"$(cat .files){} \" >> .files" \;
+find . -iname '*.java' -exec sh -c "echo \".PHONY: {}\n{}: \n\t\\\$(JAVAC) {} -d out Makefile\" >> Makefile; echo \"$(cat .files){} \" >> .files" \;
 
 echo "all: $(cat .files)" >> Makefile
 
