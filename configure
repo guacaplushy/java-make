@@ -29,5 +29,5 @@ if [[ "$_java" ]]; then
 fi
 
 for filename in ./src/main/java/*.java; do
-    echo filename
+    echo "$filename"
 done
