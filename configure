@@ -6,7 +6,7 @@ if [[ -x out ]]; then
     rm -r out
 fi
 
-if [[ -x ./.files ]]; then
+if test -f ./.files; then
     rm ./.files
 fi
 
