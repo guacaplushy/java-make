@@ -10,6 +10,10 @@ if test -a ./.files; then
     rm ./.files
 fi
 
+if test -a ./.tasks; then
+    rm ./.tasks
+fi
+
 if type -p java > /dev/null; then
     echo JAVA=java > Makefile
     JAVA=java
