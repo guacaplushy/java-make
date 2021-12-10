@@ -23,7 +23,7 @@ else
     echo "Java install is not a JDK!"
 fi
 
-if [[ "$_java" ]]; then
+if [[ "$JAVA" ]]; then
     version=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
     echo Java version "$version"
 fi
