@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+if type -p java; then
+    _java=java
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
+    _java="$JAVA_HOME/bin/java"
+else
+    echo "No java installation found!"
+fi
+
+if type -p javac; then
+    _javac=javac
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/javac" ]];  then
+    _javac="$JAVA_HOME/bin/javac"
+else
+    echo "Java install is not a JDK!"
+fi
+
+if [[ "$_java" ]]; then
+    version=$("$_java" -version 2>&1 | awk -F '"' '/version/ {print $2}')
+    echo Java "$version"
+fi
