@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-if test -f Makefile; then
+if test -a Makefile; then
     rm -r Makefile
 fi
 if test -d out; then
     rm -r out
 fi
 
-if test -f ./.files; then
+if test -a ./.files; then
     rm ./.files
 fi
 
