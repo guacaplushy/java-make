@@ -37,7 +37,7 @@ mkdir out
 
 FILES=""
 
-find . -iname '*.java' -exec echo -e ".PHONY: {}\n{}: \n\t\$(JAVAC) {} -o out/{} Makefile" >> Makefile \&\& FILES="$FILES{} " \;
+find . -iname '*.java' -exec sh -c "echo -e \".PHONY: {}\n{}: \n\t\$(JAVAC) {} -o out/{} Makefile\" >> Makefile && FILES=\"$FILES{} \"" \;
 
 echo "all: $FILES" >> Makefile
 
