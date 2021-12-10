@@ -28,6 +28,8 @@ if [[ "$_java" ]]; then
     echo Java version "$version"
 fi
 
-for filename in ./src/main/java/*.java; do
-    echo "$filename"
+echo mkdir out > Makefile
+
+for filename in *.java; do
+    echo "$filename: $(javac) $filename -o out/$filename Makefile"
 done
