@@ -43,8 +43,6 @@ touch .files
 
 find . -iname '*.java' -exec sh -c "echo \".PHONY: {}\n{}: \n\t\\\$(JAVAC) {} -o out/{} Makefile\" >> Makefile; echo \"$(cat .files){} \" >> .files" \;
 
-echo $FILES
-
 echo "all: $(cat .files)" >> Makefile
 
 echo Done!
