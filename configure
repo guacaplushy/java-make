@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+if $1 == "--help"; then
+    exit
+fi
+
 if test -a Makefile; then
     rm -r Makefile
 fi
