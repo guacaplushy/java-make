@@ -6,6 +6,10 @@ if [[ -x out ]]; then
     rm -r out
 fi
 
+if [[ -x .files ]]; then
+    rm .files
+fi
+
 if type -p java > /dev/null; then
     echo JAVA=java > Makefile
     JAVA=java
@@ -35,12 +39,12 @@ fi
 
 mkdir out
 
-FILES=""
+touch .files
 
-find . -iname '*.java' -exec sh -c "echo \".PHONY: {}\n{}: \n\t\\\$(JAVAC) {} -o out/{} Makefile\" >> Makefile; echo \"$FILES{} \"" \;
+find . -iname '*.java' -exec sh -c "echo \".PHONY: {}\n{}: \n\t\\\$(JAVAC) {} -o out/{} Makefile\" >> Makefile; echo \"$(cat .files){} \" >> .files" \;
 
 echo $FILES
 
-echo "all: $FILES" >> Makefile
+echo "all: $(cat .files)" >> Makefile
 
 echo Done!
