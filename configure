@@ -6,8 +6,8 @@ if [[ -x out ]]; then
     rm -r out
 fi
 
-if [[ -x .files ]]; then
-    rm .files
+if [[ -x ./.files ]]; then
+    rm ./.files
 fi
 
 if type -p java > /dev/null; then
