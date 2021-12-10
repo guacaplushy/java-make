@@ -1,21 +1,29 @@
 #!/usr/bin/env bash
+rm -r Makefile
 if type -p java > /dev/null; then
-    _java=java
+    echo JAVA=java > Makefile
+    JAVA=java
 elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
-    _java="$JAVA_HOME/bin/java"
+    echo JAVA="$JAVA_HOME/bin/java" > Makefile
+    JAVA="$JAVA_HOME/bin/java"
 else
     echo "No java installation found!"
 fi
 
 if type -p javac > /dev/null; then
-    _javac=javac
+    echo JAVAC=javac > Makefile
+    JAVAC=javac
 elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/javac" ]];  then
-    _javac="$JAVA_HOME/bin/javac"
+    echo JAVAC="$JAVA_HOME/bin/javac" > Makefile
+    JAVAC="$JAVA_HOME/bin/javac"
 else
     echo "Java install is not a JDK!"
 fi
 
 if [[ "$_java" ]]; then
-    version=$("$_java" -version 2>&1 | awk -F '"' '/version/ {print $2}')
-    echo Java "$version"
+    version=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
+    echo Java version "$version"
 fi
+
+for filename in ./src/main/java/*.java; do
+    echo filename
