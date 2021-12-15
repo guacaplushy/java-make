@@ -38,6 +38,17 @@ else
     exit
 fi
 
+if type -p jar > /dev/null; then
+    echo JAR=jar >> Makefile
+    JAR=jar
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/jar" ]]; then
+    echo JAR="$JAVA_HOME/bin/jar" >> Makefile
+    JAR="$JAVA_HOME/bin/jar"
+else
+    echo "Java install doesn't have the JAR archiver!"
+    exit
+fi
+
 if [[ "$JAVA" ]]; then
     version=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
 fi
@@ -45,10 +56,13 @@ fi
 mkdir out
 
 touch .files
+touch .tasks
 
 find . -iname '*.java' -exec sh -c "echo \".PHONY: {}\n{}: \n\t\\\$(JAVAC) {} -d out\" >> .tasks; printf \"%s{} \" \"$(cat .files)\" >> .files" \;
 
-echo "all: $(cat .files)" >> Makefile
+echo "all: $(cat .files)jar" >> Makefile
 echo "$(cat .tasks)" >> Makefile
+
+echo -e "jar: \n\t\$(JAR) -cf out/app.jar out/*.class" >> Makefile
 
 echo Done!
